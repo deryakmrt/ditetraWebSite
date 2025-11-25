@@ -98,12 +98,12 @@ body.separated .blob-3, body.separated .blob-4 { left: auto !important; right: -
     transition: all 1.5s cubic-bezier(0.77, 0, 0.175, 1);
 }
 
-/* HEADER ORTA (MENÜ) */
-/* Absolute kullanarak tam ortaya çiviliyoruz, diğerlerinden etkilenmez */
+/* HEADER ORTA (MENÜ) - GÜNCELLENDİ */
 .header-center {
-    flex: 1;
+    flex: 1; /* Kalan boşluğu kapla */
     display: flex;
-    justify-content: center;
+    justify-content: flex-start; /* ÖNEMLİ: Center yerine Flex-Start (Sola Yasla) */
+    padding-left: 60px; /* Logo ile menü arasına boşluk bırak */
     z-index: 1001;
 }
 
@@ -234,7 +234,7 @@ body#index-page.separated .site-header {
 .container.show-right .split.right { width: 95%; background: #0099ff; opacity: 1; z-index: 5; } .container.show-right .split.left { width: 5%; cursor: pointer; }
 .content { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 20px; opacity: 0; transform: translateY(20px); transition: 0.4s; }
 body.separated .content { opacity: 1; transform: translateY(0); transition-delay: 1.5s; }
-.logo-img { height: 130px; margin-bottom: 20px; } .big-title { font-size: 4rem; font-weight: 900; font-style: italic; color: #fff; line-height: 0.9; }
+.logo-img { height: 130px; margin-bottom: 20px; } .big-title { font-size: 2rem; font-weight: 900; font-style: italic; color: #fff; line-height: 1.1; }
 .btn { padding: 12px 35px; border: 2px solid #fff; border-radius: 50px; color: #fff; text-decoration: none; font-weight: 700; margin-top: 20px; }
 .collapsed-label { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-90deg); display: flex; align-items: center; gap: 15px; opacity: 0; pointer-events: none; }
 .container.show-left .split.right .collapsed-label, .container.show-right .split.left .collapsed-label { opacity: 1; pointer-events: all; transition-delay: 0.2s; }
@@ -264,6 +264,8 @@ body.separated .content { opacity: 1; transform: translateY(0); transition-delay
         width: 100%; 
         order: 3; 
         margin-top: 15px; 
+        justify-content: center; /* Mobilde tekrar ortaya al */
+        padding-left: 0; /* Mobilde sol boşluğu sıfırla */
     }
     .top-menu ul { justify-content: center; gap: 15px; font-size: 0.8rem; }
     
