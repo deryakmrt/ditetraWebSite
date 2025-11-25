@@ -73,6 +73,7 @@ body.separated .blob-3, body.separated .blob-4 { left: auto !important; right: -
     background: rgba(255, 255, 255, 0.03);
     backdrop-filter: blur(15px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    overflow: visible;
 }
 
 /* HEADER SOL (LOGO) */
@@ -95,7 +96,8 @@ body.separated .blob-3, body.separated .blob-4 { left: auto !important; right: -
     height: 50px; 
     width: auto;
     display: block;
-    transition: all 1.5s cubic-bezier(0.77, 0, 0.175, 1);
+    transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1);
+    transform-origin: left center;
 }
 
 /* HEADER ORTA (MENÜ) - GÜNCELLENDİ */
@@ -137,24 +139,25 @@ body.separated .blob-3, body.separated .blob-4 { left: auto !important; right: -
 /* --- SADECE INDEX SAYFASI İÇİN ÖZEL KURALLAR (ANİMASYON) --- */
 
 /* 1. Başlangıç Durumu (Animasyon Öncesi) */
-/* Logo BÜYÜK ve ORTADA */
 body#index-page:not(.separated) .header-logo-container {
-    position: fixed;
-    top: 50vh; left: 50vw;
-    transform: translate(-50%, -50%);
+    /* position: fixed;  <-- SİLDİK, ARTIK YOK */
+    /* top/left ayarları <-- SİLDİK */
     z-index: 2000;
 }
+/* Logoyu olduğu yerde 3.6 kat büyütüyoruz (50px * 3.6 = 180px) */
 body#index-page:not(.separated) .main-logo-img {
-    height: 200px; /* Sadece burada büyük */
-    box-shadow: 0 0 50px rgba(255,153,0, 0.3);
-    border-radius: 10px;
+    transform: scale(3.6); /* Olduğu yerde devasa görünür */
+    box-shadow: 0 10px 30px rgba(0,0,0, 0.5);
+    border-radius: 5px;
 }
-/* Menü ve İkonlar GİZLİ */
+
+/* Menü ve İkonlar Gizli */
 body#index-page:not(.separated) .header-center,
 body#index-page:not(.separated) .header-right {
     opacity: 0;
     transform: translateY(-20px);
 }
+
 /* Header Tıklanamaz */
 body#index-page:not(.separated) .site-header {
     pointer-events: none;
@@ -197,11 +200,12 @@ body:not(#index-page) .site-header {
 
 /* 2. Bitiş Durumu (Animasyon Sonrası - .separated sınıfı eklendiğinde) */
 body#index-page.separated .header-logo-container {
-    position: relative; top: auto; left: auto; transform: none;
+    z-index: auto;
 }
 body#index-page.separated .main-logo-img {
-    height: 50px; /* Küçül */
-    box-shadow: none; border-radius: 0;
+    transform: scale(1); /* Orijinal boyutuna (50px) döner */
+    box-shadow: none; 
+    border-radius: 0;
 }
 body#index-page.separated .header-center,
 body#index-page.separated .header-right {
