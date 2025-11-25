@@ -1,0 +1,286 @@
+/* style.css - FINAL VERSION */
+
+/* --- FONTLAR --- */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;700&display=swap');
+
+/* --- TEMEL AYARLAR --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* ÖNEMLİ: Varsayılan olarak (Kurumsal, İletişim vb.) sayfa kaydırılabilir olsun */
+html, body {
+    width: 100%;
+    min-height: 100vh;
+    background: #000;
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden; /* Yan taşmayı engelle */
+}
+
+body {
+    overflow-y: auto; /* DİKEY KAYDIRMA AÇIK */
+}
+
+/* SADECE ANA SAYFA (ID="index-page" varsa) Kaydırmayı Kilitle */
+body#index-page {
+    height: 100vh;
+    overflow: hidden; 
+}
+
+/* --- ARKA PLAN (BLOBS) --- */
+.fluid-background {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 0; overflow: hidden; background: #1a1a1a;
+}
+.blob {
+    position: absolute; border-radius: 50%;
+    filter: blur(80px); opacity: 0.8;
+    animation: float 10s infinite ease-in-out alternate;
+    transition: all 2.5s ease-in-out;
+}
+.blob-1 { width: 60vw; height: 60vw; background: #ff5100; top: -10%; left: -10%; }
+.blob-2 { width: 50vw; height: 50vw; background: #ff9d00; bottom: -10%; left: 20%; }
+.blob-3 { width: 60vw; height: 60vw; background: #006aff; top: -10%; right: -10%; }
+.blob-4 { width: 50vw; height: 50vw; background: #00c3ff; bottom: -10%; right: 20%; }
+.noise-overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: url('https://grainy-gradients.vercel.app/noise.svg');
+    opacity: 0.2; pointer-events: none;
+}
+@keyframes float { 0% { transform: translate(0, 0); } 100% { transform: translate(20px, 20px); } }
+
+/* Ayrışma Modu (Index Animasyonu İçin) */
+body.separated .blob-1, body.separated .blob-2 { left: -10% !important; right: auto !important; top: 10% !important; transform: scale(1.2); }
+body.separated .blob-3, body.separated .blob-4 { left: auto !important; right: -10% !important; top: 10% !important; transform: scale(1.2); }
+
+
+/* --- MASTER HEADER (SABİT ŞERİT) --- */
+.site-header {
+    position: fixed;
+    top: 0; left: 0; width: 100%;
+    height: 90px;
+    z-index: 1000;
+    
+    /* FLEXBOX İLE DÜZENLEME (En garantisi) */
+    display: flex;
+    justify-content: space-between; /* Sol ve Sağ köşelere it */
+    align-items: center;
+    padding: 0 40px;
+    
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* HEADER SOL (LOGO) */
+.header-left {
+    flex: 0 0 auto;
+    display: flex; align-items: center; z-index: 1002;
+}
+
+.header-logo-container {
+    position: relative;
+    transform: none; 
+    top: auto; 
+    left: auto;
+    display: flex;
+    align-items: center;
+}
+
+/* ÖNEMLİ: Varsayılan Logo Boyutu KÜÇÜK (50px) */
+.main-logo-img {
+    height: 50px; 
+    width: auto;
+    display: block;
+    transition: all 1.5s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+/* HEADER ORTA (MENÜ) */
+/* Absolute kullanarak tam ortaya çiviliyoruz, diğerlerinden etkilenmez */
+.header-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    z-index: 1001;
+}
+
+.top-menu ul {
+    display: flex; list-style: none; gap: 40px; margin: 0; padding: 0;
+}
+
+.top-menu a {
+    text-decoration: none; color: rgba(255, 255, 255, 0.7);
+    font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 0.9rem;
+    text-transform: uppercase; letter-spacing: 1px; white-space: nowrap;
+    transition: color 0.3s ease; position: relative;
+}
+.top-menu a:hover, .top-menu a.active { color: #fff; }
+.top-menu a::after {
+    content: ''; position: absolute; width: 0; height: 3px; bottom: -8px; left: 0;
+    background-color: #ff9900; transition: width 0.3s ease;
+}
+.top-menu a:hover::after, .top-menu a.active::after { width: 100%; }
+
+/* HEADER SAĞ (İKONLAR) */
+.header-right {
+    flex: 0 0 auto;
+    display: flex; align-items: center; z-index: 1002;
+}
+.social-icons { display: flex; gap: 15px; }
+.social-icons a { color: #fff; font-size: 1.2rem; transition: 0.3s; opacity: 0.8; }
+.social-icons a:hover { opacity: 1; transform: translateY(-3px); color: #ff9900; }
+
+
+/* --- SADECE INDEX SAYFASI İÇİN ÖZEL KURALLAR (ANİMASYON) --- */
+
+/* 1. Başlangıç Durumu (Animasyon Öncesi) */
+/* Logo BÜYÜK ve ORTADA */
+body#index-page:not(.separated) .header-logo-container {
+    position: fixed;
+    top: 50vh; left: 50vw;
+    transform: translate(-50%, -50%);
+    z-index: 2000;
+}
+body#index-page:not(.separated) .main-logo-img {
+    height: 200px; /* Sadece burada büyük */
+    box-shadow: 0 0 50px rgba(255,153,0, 0.3);
+    border-radius: 10px;
+}
+/* Menü ve İkonlar GİZLİ */
+body#index-page:not(.separated) .header-center,
+body#index-page:not(.separated) .header-right {
+    opacity: 0;
+    transform: translateY(-20px);
+}
+/* Header Tıklanamaz */
+body#index-page:not(.separated) .site-header {
+    pointer-events: none;
+}
+/* DİĞER SAYFALARDA LOGO VE HEADER NORMAL */
+body#corporate-page .header-logo-container,
+body#contact-page .header-logo-container {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+    z-index: auto !important;
+}
+body#corporate-page .main-logo-img,
+body#contact-page .main-logo-img {
+    height: 50px !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+}
+body#corporate-page .header-center,
+body#corporate-page .header-right,
+body#contact-page .header-center,
+body#contact-page .header-right {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+body#corporate-page .site-header,
+body#contact-page .site-header {
+    pointer-events: all !important;
+}
+/* Diğer sayfalarda header normal görünsün */
+body:not(#index-page) .header-center,
+body:not(#index-page) .header-right {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+body:not(#index-page) .site-header {
+    pointer-events: all !important;
+}
+
+/* 2. Bitiş Durumu (Animasyon Sonrası - .separated sınıfı eklendiğinde) */
+body#index-page.separated .header-logo-container {
+    position: relative; top: auto; left: auto; transform: none;
+}
+body#index-page.separated .main-logo-img {
+    height: 50px; /* Küçül */
+    box-shadow: none; border-radius: 0;
+}
+body#index-page.separated .header-center,
+body#index-page.separated .header-right {
+    opacity: 1; transform: translateY(0); transition: all 1s ease 1.5s;
+}
+body#index-page.separated .site-header {
+    pointer-events: all;
+}
+
+
+/* --- SAYFA İÇERİK AYARLARI --- */
+/* Header altında kalmaması için üstten boşluk */
+.corporate-container {
+    padding-top: 150px; 
+    padding-bottom: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+    color: #fff;
+}
+.contact-container {
+    padding-top: 150px;
+    display: flex; flex-direction: column; align-items: center;
+}
+
+/* Split Ekran (Index) */
+.container { position: relative; width: 100%; height: 100%; }
+.split { position: absolute; width: 50%; height: 100%; overflow: hidden; transition: all 1s ease; display: flex; justify-content: center; align-items: center; background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border-right: 1px solid rgba(255,255,255,0.1); }
+.split.left { left: 0; } .split.right { right: 0; border-left: 1px solid rgba(255,255,255,0.1); border-right: none; }
+.container.show-left .split.left { width: 95%; background: #ff9900; opacity: 1; z-index: 5; } .container.show-left .split.right { width: 5%; cursor: pointer; }
+.container.show-right .split.right { width: 95%; background: #0099ff; opacity: 1; z-index: 5; } .container.show-right .split.left { width: 5%; cursor: pointer; }
+.content { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 20px; opacity: 0; transform: translateY(20px); transition: 0.4s; }
+body.separated .content { opacity: 1; transform: translateY(0); transition-delay: 1.5s; }
+.logo-img { height: 130px; margin-bottom: 20px; } .big-title { font-size: 4rem; font-weight: 900; font-style: italic; color: #fff; line-height: 0.9; }
+.btn { padding: 12px 35px; border: 2px solid #fff; border-radius: 50px; color: #fff; text-decoration: none; font-weight: 700; margin-top: 20px; }
+.collapsed-label { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-90deg); display: flex; align-items: center; gap: 15px; opacity: 0; pointer-events: none; }
+.container.show-left .split.right .collapsed-label, .container.show-right .split.left .collapsed-label { opacity: 1; pointer-events: all; transition-delay: 0.2s; }
+.col-logo { height: 50px; opacity: 1; }
+.back-btn { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); color: #fff; background: rgba(0,0,0,0.3); padding: 10px 30px; border-radius: 30px; border: none; cursor: pointer; opacity: 0; pointer-events: none; z-index: 100; }
+.container.show-left .back-btn, .container.show-right .back-btn { opacity: 1; pointer-events: all; }
+.arrow-btn { position: absolute; top: 50%; transform: translateY(-50%); color: #fff; font-size: 1.5rem; background: rgba(255,255,255,0.1); width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 20; }
+.container.show-left .arrow-btn, .container.show-right .arrow-btn { display: none; }
+.left .right-arrow { right: 30px; } .right .left-arrow { left: 30px; }
+
+.container.show-left .split.right .content, .container.show-right .split.left .content {
+    opacity: 0 !important; transition: opacity 0.1s ease !important; pointer-events: none;
+}
+
+/* MOBİL UYUM */
+@media(max-width: 900px) {
+    .site-header { 
+        height: auto; 
+        padding: 15px 20px; 
+        flex-wrap: wrap; 
+    }
+    .header-left { order: 1; flex: 0 0 50%; }
+    .header-right { order: 2; flex: 0 0 50%; justify-content: flex-end; }
+    
+    /* Mobilde menüyü alta al */
+    .header-center { 
+        width: 100%; 
+        order: 3; 
+        margin-top: 15px; 
+    }
+    .top-menu ul { justify-content: center; gap: 15px; font-size: 0.8rem; }
+    
+    body#index-page:not(.separated) .main-logo-img { height: 80px; }
+    body#index-page.separated .main-logo-img { height: 40px; }
+    .main-logo-img { height: 40px; }
+    
+    .corporate-container, .contact-container { padding-top: 180px; }
+}
+.bounce-arrow {
+    font-size: 1.5rem;
+    color: #fff;
+    opacity: 0.8;
+    animation: bounce-horizontal 1.5s infinite;
+}
+
+@keyframes bounce-horizontal {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(10px); }
+}

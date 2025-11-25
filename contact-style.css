@@ -1,0 +1,185 @@
+/* contact-style.css */
+
+/* Genel Düzen */
+.contact-container {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    padding-top: 150px;
+    z-index: 10;
+}
+
+/* Geri Dön Butonu */
+.back-home-btn {
+    position: absolute;
+    top: 40px;
+    left: 50px;
+    text-decoration: none;
+    color: #fff;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    opacity: 0.7;
+    transition: 0.3s;
+    z-index: 20;
+}
+.back-home-btn:hover { opacity: 1; gap: 15px; }
+
+/* Başlık Alanı */
+.contact-header {
+    text-align: center;
+    margin-bottom: 50px;
+    color: #fff;
+}
+.contact-header h1 {
+    font-size: 3.5rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    font-family: 'Montserrat', sans-serif;
+}
+.contact-header p {
+    font-family: 'Manrope', sans-serif;
+    font-size: 1.1rem;
+    opacity: 0.8;
+}
+
+/* Grid Yapısı (Sol Bilgi - Sağ Harita) */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* İkiye böl */
+    gap: 40px;
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* --- SOL: BİLGİ KARTLARI --- */
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Eskiden 20px idi */
+}
+
+.info-card {
+    padding: 15px 20px; /* Eskiden 25px idi */
+    border-radius: 15px;
+    gap: 15px; /* İkon ile yazı arası mesafe */
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease, background 0.3s;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* İkon Kutuları */
+.icon-box {
+    width: 45px;  /* Eskiden 60px idi */
+    height: 45px; /* Eskiden 60px idi */
+    font-size: 1.2rem; /* İkon boyutu küçüldü */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    flex-shrink: 0;
+}
+
+.icon-box.orange { background: linear-gradient(135deg, #ff9900, #ff5100); box-shadow: 0 5px 15px rgba(255, 81, 0, 0.3); }
+.icon-box.blue { background: linear-gradient(135deg, #00c3ff, #006aff); box-shadow: 0 5px 15px rgba(0, 106, 255, 0.3); }
+.icon-box.purple { background: linear-gradient(135deg, #d53369, #daae51); box-shadow: 0 5px 15px rgba(213, 51, 105, 0.3); }
+
+.info-text h3 {
+    font-size: 1rem; /* Eskiden 1.2rem idi */
+    margin-bottom: 3px;
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+}
+
+.info-text p {
+    font-size: 0.9rem; /* Daha kibar bir yazı boyutu */
+    line-height: 1.4;
+    font-family: 'Manrope', sans-serif;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* --- SAĞ: HARİTA --- */
+.map-container {
+    /* min-height değerini biraz düşürebilirsiniz */
+    min-height: 350px; 
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+}
+
+
+/* Haritaya siyah-beyaz filtre (Sitenin tarzına uyması için) */
+/*.map-container iframe {
+    filter: grayscale(100%) invert(92%) contrast(83%); 
+    /* Bu filtre haritayı "Dark Mode" gibi gösterir. 
+       Renkli istiyorsanız bu satırı silin. */
+/*}
+
+/* Mobil Uyum */
+@media(max-width: 768px) {
+    .contact-grid { grid-template-columns: 1fr; } /* Alt alta al */
+    .back-home-btn { top: 20px; left: 20px; font-size: 0.9rem; }
+    .contact-header h1 { font-size: 2.5rem; }
+    .contact-container { padding: 20px; padding-top: 80px; }
+}
+/* --- INSTAGRAM & SOSYAL MEDYA EKLEMELERİ --- */
+
+/* Linkin altındaki çizgiyi kaldır ve rengi koru */
+.social-card-link {
+    text-decoration: none;
+    display: block; /* Kartın tamamını kaplasın */
+}
+
+/* Instagram'ın Orijinal Renk Gradyanı */
+.icon-box.instagram {
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    box-shadow: 0 5px 15px rgba(214, 36, 159, 0.3); /* Pembe gölge */
+}
+
+/* "Takip Et" Yazısı */
+.follow-text {
+    font-size: 0.8rem;
+    color: #fff;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-top: 5px;
+    display: inline-block;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s;
+    opacity: 0.8;
+}
+
+/* Kartın üzerine gelince (Hover) efektleri */
+.social-card-link:hover .info-card {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.15); /* Biraz daha parlak */
+    cursor: pointer;
+}
+
+.social-card-link:hover .follow-text {
+    color: #ffdc80; /* Yazı sarımsı olsun */
+    border-bottom: 1px solid #ffdc80;
+    gap: 5px;
+}

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ditetra İnovasyon</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body id="index-page">
+
+    <div class="fluid-background">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+        <div class="blob blob-4"></div>
+        <div class="blob blob-5"></div>
+        <div class="noise-overlay"></div>
+    </div>
+
+    <header class="site-header">
+        
+        <div class="header-left">
+            <div class="header-logo-container">
+                <a href="index.html">
+                    <img src="logo/Ditetra-Logo.jpg" alt="Ditetra İnovasyon" class="main-logo-img">
+                </a>
+            </div>
+        </div>
+
+        <div class="header-center">
+            <nav class="top-menu">
+                <ul>
+                    <li><a href="index.html" class="active">ANA SAYFA</a></li> 
+                    <li><a href="kurumsal.html">KURUMSAL</a></li>
+                    <li><a href="iletisim.html">İLETİŞİM</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="header-right">
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/company/ditetra/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="https://www.facebook.com/profile.php?id=61561894801433" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/ditetra_inovasyon/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+        </div>
+
+    </header>
+
+    <div class="container" id="mainContainer">
+
+        <div class="split left">
+            <div class="content">
+                <img src="logo/Renled-Logo.png" class="logo-img" alt="Renled Logo">
+                <span class="subtitle">AYDINLATMA ÇÖZÜMLERİ</span>
+                <h1 class="big-title">IŞIĞI<br>YÖNET!</h1>
+                <p class="description">Renled ile mekanlara modern dokunuş.</p>
+                <a href="https://renled.com/" target="_blank" class="btn">Ürünleri İncele <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            
+            <div class="collapsed-label">
+                <img src="logo/Renled-Logo.png" alt="Renled" class="col-logo">
+                <i class="fa-solid fa-chevron-right bounce-arrow"></i>
+            </div>
+
+            <div class="arrow-btn right-arrow" onclick="expand('left')"><i class="fa-solid fa-chevron-right"></i></div>
+        </div>
+
+        <div class="split right">
+            <div class="content">
+                <img src="logo/Enides-Logo.png" class="logo-img" alt="Enides Logo">
+                <span class="subtitle">DANIŞMANLIK HİZMETLERİ</span>
+                <h1 class="big-title">İŞ İNİ<br>BÜYÜT.</h1>
+                <p class="description">Enides ile dijital dönüşüm stratejileri.</p>
+                <a href="https://www.enides.com/" target="_blank" class="btn">Hizmetleri Gör <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+
+            <div class="collapsed-label">
+                <i class="fa-solid fa-chevron-left bounce-arrow"></i>
+                <img src="logo/Enides-Logo.png" alt="Enides" class="col-logo">
+            </div>
+
+            <div class="arrow-btn left-arrow" onclick="expand('right')"><i class="fa-solid fa-chevron-left"></i></div>
+        </div>
+
+        <button class="back-btn" onclick="resetView()"><i class="fa-solid fa-xmark"></i> Kapat</button>
+        
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
