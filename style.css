@@ -374,3 +374,104 @@ body.separated .content { opacity: 1; transform: translateY(0); transition-delay
     0%, 100% { transform: translateX(0); }
     50% { transform: translateX(10px); }
 }
+/* --- RENLED (SOL) ARKAPLAN GÖRSEL EFEKTİ --- */
+
+/* 1. Mevcut sabit turuncu rengi iptal ediyoruz */
+.container.show-left .split.left {
+    background: transparent !important; /* Arkaplan şeffaf olsun ki görsel görünsün */
+}
+
+/* 2. Arkaplan Görseli Katmanı (En Arkada) */
+.split.left::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    
+    /* BURAYI DÜZENLE: Görselinin tam adını yaz (uzantısıyla beraber .jpg / .png) */
+    background-image: url('logo/bambu-penta.jpg'); 
+    
+    background-size: cover;    /* Görsel tüm alanı kaplasın */
+    background-position: center; /* Ortala */
+    
+    /* Flu (Blur) Efekti */
+    filter: blur(3px); 
+    /* Blur yapınca kenarlar beyazlamasın diye görseli biraz büyütüyoruz */
+    transform: scale(1.1); 
+    
+    opacity: 0; /* Başlangıçta gizli */
+    transition: opacity 1s ease; /* Yavaşça gelsin */
+    z-index: -2; /* En arkada dursun */
+}
+
+/* 3. Turuncu Renk Filtresi (Görselin Üstünde) */
+.split.left::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    
+    /* Turuncu renk ve şeffaflık ayarı (0.7 idealdir, artırıp azaltabilirsin) */
+    background: rgba(255, 153, 0, 0.56); 
+    
+    opacity: 0; /* Başlangıçta gizli */
+    transition: opacity 1s ease;
+    z-index: -1; /* Görselin önünde, yazıların arkasında */
+}
+
+/* Tıklanınca (Aktif Olunca) Görsel ve Renk Ortaya Çıksın */
+.container.show-left .split.left::before,
+.container.show-left .split.left::after {
+    opacity: 1;
+}
+
+/* --- SAĞ TARAF (ENIDES - MAVİ) İÇİN GÖRSEL EFEKTİ --- */
+
+/* 1. Mevcut mavi arka planı İPTAL ET */
+body#index-page .container.show-right .split.right {
+    background: transparent !important; 
+}
+
+/* 2. Yazıları görselin üstünde kalsın diye ön plana al */
+.split.right .content {
+    position: relative;
+    z-index: 2;
+}
+
+/* 3. Arka Plan Görseli (Flu Efektli) */
+.split.right::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    
+    /* BURAYA MAVİ TARAF İÇİN İSTEDİĞİN GÖRSELİN ADINI YAZ */
+    background-image: url('logo/bambu-penta.jpg'); 
+    
+    background-size: cover;
+    background-position: center;
+    
+    filter: blur(3px); 
+    transform: scale(1.1);
+    
+    opacity: 0; 
+    transition: opacity 1s ease;
+    z-index: 0; 
+}
+
+/* 4. Mavi Renk Filtresi */
+.split.right::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    
+    /* Mavi yarı saydam renk */
+    background: rgba(0, 153, 255, 0.56); 
+    
+    opacity: 0; 
+    transition: opacity 1s ease;
+    z-index: 1; 
+}
+
+/* Animasyon Tetiklenince Görünür Yap */
+.container.show-right .split.right::before,
+.container.show-right .split.right::after {
+    opacity: 1 !important;
+}
