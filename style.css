@@ -387,14 +387,14 @@ body.separated .content { opacity: 1; transform: translateY(0); transition-delay
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
     
-    /* BURAYI DÜZENLE: Görselinin tam adını yaz (uzantısıyla beraber .jpg / .png) */
+    /* BURAYI DÜZENLE: arkaplan görselinin tam adını yaz */
     background-image: url('logo/bambu-penta.jpg'); 
     
     background-size: cover;    /* Görsel tüm alanı kaplasın */
     background-position: center; /* Ortala */
     
     /* Flu (Blur) Efekti */
-    filter: blur(3px); 
+    filter: blur(3px); /*arkaplanın bulanıklık seviyesi*/
     /* Blur yapınca kenarlar beyazlamasın diye görseli biraz büyütüyoruz */
     transform: scale(1.1); 
     
@@ -409,7 +409,7 @@ body.separated .content { opacity: 1; transform: translateY(0); transition-delay
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
     
-    /* Turuncu renk ve şeffaflık ayarı (0.7 idealdir, artırıp azaltabilirsin) */
+    /* Turuncu renk ve şeffaflık ayarı (0.56 yaptık, artırıp azaltılabilir) */
     background: rgba(255, 153, 0, 0.56); 
     
     opacity: 0; /* Başlangıçta gizli */
@@ -448,7 +448,7 @@ body#index-page .container.show-right .split.right {
     background-size: cover;
     background-position: center;
     
-    filter: blur(3px); 
+    filter: blur(3px); /*arkaplanın bulanıklık seviyesi*/
     transform: scale(1.1);
     
     opacity: 0; 
@@ -462,7 +462,7 @@ body#index-page .container.show-right .split.right {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
     
-    /* Mavi yarı saydam renk */
+    /* Mavi yarı saydam renk ve şeffaflık ayarı (0.56 yaptık, artırıp azaltılabilir)*/
     background: rgba(0, 153, 255, 0.56); 
     
     opacity: 0; 
